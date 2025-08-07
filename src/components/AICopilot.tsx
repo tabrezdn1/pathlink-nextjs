@@ -3,6 +3,9 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Brain, Target, Zap, Shield, TrendingUp, Clock, CheckCircle, Sparkles } from 'lucide-react';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Button from '@/components/ui/Button';
 
 const AICopilot: React.FC = () => {
   const containerVariants: Variants = {
@@ -79,10 +82,10 @@ const AICopilot: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
-      <div className="container-custom w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Section className="bg-gray-50 dark:bg-gray-900">
+      <Container>
         <motion.div
-          className="text-center mb-20"
+          className="mb-20 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -90,22 +93,22 @@ const AICopilot: React.FC = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-6 py-3 rounded-full text-sm font-semibold mb-6"
+            className="mb-6 inline-flex items-center space-x-2 rounded-full bg-blue-100 px-6 py-3 text-sm font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="h-4 w-4" />
             <span>Your Personal AI Career Agent</span>
           </motion.div>
 
           <motion.h2
             variants={itemVariants}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-display text-gray-900 dark:text-white mb-6"
+            className="text-display mb-6 text-2xl text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl"
           >
             Built by Job Seekers, <span className="gradient-text">for Job Seekers</span>
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-body-large text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0"
+            className="text-body-large mx-auto max-w-4xl px-2 text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:px-0 sm:text-lg md:text-xl"
           >
             PathLink&apos;s AI Copilot acts as your personal talent agent, analyzing millions of
             data points to accelerate your career journey and connect you with opportunities you
@@ -127,13 +130,13 @@ const AICopilot: React.FC = () => {
               <motion.div
                 key={metric.label}
                 variants={itemVariants}
-                className="text-center bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700"
+                className="rounded-xl border border-gray-100 bg-white p-4 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:gradient-text transition-all duration-300">
+                <div className="group-hover:gradient-text mb-1 text-2xl font-bold text-gray-900 transition-all duration-300 dark:text-white">
                   {metric.number}
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 leading-tight">
+                <div className="text-xs leading-tight text-gray-600 dark:text-gray-400">
                   {metric.label}
                 </div>
               </motion.div>
@@ -141,15 +144,15 @@ const AICopilot: React.FC = () => {
           </div>
 
           {/* Desktop: 4 Column Grid */}
-          <div className="hidden sm:grid sm:grid-cols-4 gap-6 lg:gap-8">
+          <div className="hidden gap-6 sm:grid sm:grid-cols-4 lg:gap-8">
             {successMetrics.map(metric => (
               <motion.div
                 key={metric.label}
                 variants={itemVariants}
-                className="text-center group"
+                className="group text-center"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2 group-hover:gradient-text transition-all duration-300">
+                <div className="group-hover:gradient-text mb-2 text-3xl font-bold text-gray-900 transition-all duration-300 dark:text-white md:text-4xl lg:text-5xl">
                   {metric.number}
                 </div>
                 <div className="text-caption text-gray-600 dark:text-gray-400">{metric.label}</div>
@@ -160,7 +163,7 @@ const AICopilot: React.FC = () => {
 
         {/* AI Features Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
@@ -170,23 +173,23 @@ const AICopilot: React.FC = () => {
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="group rounded-xl bg-white p-4 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800 sm:rounded-2xl sm:p-6 lg:p-8"
               whileHover={{ y: -2 }}
             >
-              <div className="w-12 sm:w-16 h-12 sm:h-16 gradient-bg rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-105 transition-transform duration-300">
-                <feature.icon className="w-6 sm:w-8 h-6 sm:h-8 text-white dark:text-gray-900" />
+              <div className="gradient-bg mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 sm:mb-6 sm:h-16 sm:w-16 sm:rounded-2xl">
+                <feature.icon className="h-6 w-6 text-white dark:text-gray-900 sm:h-8 sm:w-8" />
               </div>
 
-              <h3 className="text-heading text-gray-900 dark:text-white mb-3 sm:mb-4 text-base sm:text-lg lg:text-xl font-semibold leading-tight">
+              <h3 className="text-heading mb-3 text-base font-semibold leading-tight text-gray-900 dark:text-white sm:mb-4 sm:text-lg lg:text-xl">
                 {feature.title}
               </h3>
 
-              <p className="text-sm text-body text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed">
+              <p className="text-body mb-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:mb-4">
                 {feature.description}
               </p>
 
-              <div className="inline-flex items-center space-x-1 sm:space-x-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                <CheckCircle className="w-3 h-3" />
+              <div className="inline-flex items-center space-x-1 rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-300 sm:space-x-2 sm:px-3 sm:text-sm">
+                <CheckCircle className="h-3 w-3" />
                 <span>{feature.benefit}</span>
               </div>
             </motion.div>
@@ -195,7 +198,7 @@ const AICopilot: React.FC = () => {
 
         {/* CTA Section */}
         <motion.div
-          className="text-center mt-20"
+          className="mt-20 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
@@ -203,27 +206,27 @@ const AICopilot: React.FC = () => {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-xl sm:text-2xl md:text-3xl text-heading text-gray-900 dark:text-white mb-6"
+            className="text-heading mb-6 text-xl text-gray-900 dark:text-white sm:text-2xl md:text-3xl"
           >
             Ready to experience the future of job searching?
           </motion.h3>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <button className="btn-accent flex items-center space-x-2">
+            <Button variant="accent" className="flex items-center space-x-2">
               <span>Start Your AI Journey</span>
-              <Sparkles className="w-5 h-5" />
-            </button>
+              <Sparkles className="h-5 w-5" />
+            </Button>
 
-            <button className="btn-secondary">
+            <Button variant="secondary">
               <span>See How It Works</span>
-            </button>
+            </Button>
           </motion.div>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

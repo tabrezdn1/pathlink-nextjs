@@ -17,11 +17,13 @@ npm run dev
 ## 📋 Available Scripts
 
 ### Development
+
 - `npm run dev` - Start development server with Turbopack
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 
 ### Code Quality
+
 - `npm run lint` - Run ESLint
 - `npm run lint:fix` - Run ESLint with auto-fix
 - `npm run format` - Format code with Prettier
@@ -29,6 +31,7 @@ npm run dev
 - `npm run type-check` - Run TypeScript type checking
 
 ### CI/CD
+
 - `npm run ci:check` - Run all quality checks (type-check + lint + format + build)
 
 ## 🛠️ Tech Stack
@@ -44,7 +47,9 @@ npm run dev
 ## 🔄 GitHub Workflows
 
 ### CI Pipeline (`ci.yml`)
+
 Runs on every push and PR:
+
 - ✅ TypeScript type checking
 - ✅ ESLint code quality checks
 - ✅ Prettier formatting verification
@@ -53,13 +58,17 @@ Runs on every push and PR:
 - ✅ Dependency review (PRs only)
 
 ### Code Quality (`code-quality.yml`)
+
 Advanced PR checks:
+
 - 📊 Bundle size analysis
 - 🔍 ESLint SARIF reporting
 - 💬 Automated PR comments
 
 ### Deployment (`deploy.yml`)
+
 Production deployment:
+
 - 🚀 Automatic Vercel deployment
 - ✅ Quality checks before deploy
 
@@ -75,17 +84,22 @@ Production deployment:
 ## 🔧 Development
 
 ### Prerequisites
+
 - Node.js 18+ or 20+
 - npm
 
 ### Code Style
+
 This project uses:
+
 - ESLint for code quality
 - Prettier for formatting
 - TypeScript strict mode
 
 ### Pre-commit Checks
+
 All commits should pass:
+
 ```bash
 npm run ci:check
 ```
@@ -108,11 +122,13 @@ src/
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect your repository to Vercel
 2. Set up environment variables (if any)
 3. Deploy automatically on push to main
 
 ### Manual Deployment
+
 ```bash
 npm run build
 npm run start

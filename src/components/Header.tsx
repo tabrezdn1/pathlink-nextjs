@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-
-interface NavItem {
-  name: string;
-  href: string;
-}
+import type { NavItem } from '@/types';
+import Container from '@/components/ui/Container';
+import Logo from '@/components/ui/Logo';
+import Button from '@/components/ui/Button';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,38 +36,27 @@ const Header: React.FC = () => {
 
   return (
     <motion.header
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         isScrolled ? 'glass-effect shadow-2xl shadow-primary-500/10' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 md:h-20 px-2 sm:px-0">
+      <Container>
+        <div className="flex h-16 items-center justify-between px-2 sm:px-0 md:h-20">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              className="relative w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden"
-              whileHover={{ rotate: 5 }}
-            >
-              <div className="absolute inset-0 gradient-bg" />
-              <span className="relative text-white dark:text-gray-900 font-bold text-lg">P</span>
-            </motion.div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">Pathlink</span>
+          <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.2 }}>
+            <Logo size={32} />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center space-x-8 md:flex">
             {navItems.map(item => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-colors duration-200"
+                className="font-medium text-gray-700 transition-colors duration-200 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400"
               >
                 {item.name}
               </a>
@@ -77,41 +65,39 @@ const Header: React.FC = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              className="rounded-lg bg-gray-100 p-2 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               {mounted && theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
+                <Sun className="h-5 w-5 text-yellow-500 dark:text-yellow-400" />
               ) : (
-                <Moon className="w-5 h-5 text-gray-700" />
+                <Moon className="h-5 w-5 text-gray-700" />
               )}
             </button>
 
-            <button className="btn-primary">
-              <span>Get Started</span>
-            </button>
+            <Button variant="primary">Get Started</Button>
           </nav>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-1 sm:space-x-2">
+          <div className="flex items-center space-x-1 sm:space-x-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              className="rounded-lg bg-gray-100 p-2 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               {mounted && theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />
+                <Sun className="h-5 w-5 text-yellow-500 dark:text-yellow-400" />
               ) : (
-                <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
               )}
             </button>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              className="rounded-lg p-2 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               {isOpen ? (
-                <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
               )}
             </button>
           </div>
@@ -127,23 +113,23 @@ const Header: React.FC = () => {
           }}
           transition={{ duration: 0.3 }}
         >
-          <div className="px-4 pt-2 pb-3 space-y-1 bg-white dark:bg-dark-surface rounded-lg shadow-lg mt-2 mx-2">
+          <div className="mx-2 mt-2 space-y-1 rounded-lg bg-white px-4 pb-3 pt-2 shadow-lg dark:bg-dark-surface">
             {navItems.map(item => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md font-medium transition-colors duration-200"
+                className="block rounded-md px-3 py-2 font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-primary-500 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary-400"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
               </a>
             ))}
             <div className="px-3 py-2">
-              <button className="btn-primary w-full text-sm py-2.5">Get Started</button>
+              <Button className="w-full py-2.5 text-sm">Get Started</Button>
             </div>
           </div>
         </motion.div>
-      </div>
+      </Container>
     </motion.header>
   );
 };

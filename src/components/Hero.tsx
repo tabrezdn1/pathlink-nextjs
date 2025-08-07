@@ -3,6 +3,10 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, Star, Users, Briefcase, TrendingUp } from 'lucide-react';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Button from '@/components/ui/Button';
+import { scrollToElement } from '@/utils';
 
 interface StatItem {
   icon: React.ComponentType<{ className?: string }>;
@@ -58,10 +62,10 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white dark:bg-black overflow-x-hidden">
-      <div className="container-custom relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Section className="relative flex min-h-screen items-center justify-center bg-white dark:bg-black">
+      <Container className="relative z-10">
         <motion.div
-          className="text-center max-w-5xl mx-auto pt-16 sm:pt-20 w-full"
+          className="mx-auto w-full max-w-5xl pt-16 text-center sm:pt-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -69,9 +73,9 @@ const Hero: React.FC = () => {
           {/* Trust Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 px-3 sm:px-6 py-2 sm:py-3 rounded-full text-gray-700 dark:text-gray-300 text-xs sm:text-sm font-medium mb-4 sm:mb-8 mx-auto"
+            className="mx-auto mb-4 inline-flex items-center space-x-2 rounded-full bg-gray-100 px-3 py-2 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300 sm:mb-8 sm:px-6 sm:py-3 sm:text-sm"
           >
-            <Star className="w-3 sm:w-4 h-3 sm:h-4 fill-current text-gray-600 dark:text-gray-400 flex-shrink-0" />
+            <Star className="h-3 w-3 flex-shrink-0 fill-current text-gray-600 dark:text-gray-400 sm:h-4 sm:w-4" />
             <span className="text-center leading-tight">
               <span className="block sm:hidden">AI Career Agent - 500K+ Users</span>
               <span className="hidden sm:block">
@@ -83,7 +87,7 @@ const Hero: React.FC = () => {
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-display mb-4 sm:mb-6 leading-tight"
+            className="text-display mb-4 text-3xl leading-tight sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
           >
             <motion.span
               className="block text-gray-900 dark:text-white"
@@ -94,7 +98,7 @@ const Hero: React.FC = () => {
               Smarter Matches.
             </motion.span>
             <motion.span
-              className="block gradient-text"
+              className="gradient-text block"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
@@ -106,7 +110,7 @@ const Hero: React.FC = () => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-body-large text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0"
+            className="text-body-large mx-auto mb-8 max-w-4xl px-2 text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:mb-12 sm:px-0 sm:text-lg md:text-xl"
           >
             PathLink connects the right people to the right roles — faster, smarter, and without the
             noise. Whether you&apos;re hiring or looking, PathLink gives you the guidance and match
@@ -116,84 +120,63 @@ const Hero: React.FC = () => {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-12 sm:mb-16 px-2 sm:px-0"
+            className="mb-12 flex flex-col items-center justify-center gap-3 px-2 sm:mb-16 sm:flex-row sm:gap-4 sm:px-0"
           >
-            <button
-              className="btn-accent flex items-center space-x-2"
+            <Button
+              variant="accent"
+              className="flex items-center space-x-2"
               onClick={() => {
-                const element = document.getElementById('tabbed-features');
-                if (element) {
-                  // Get actual header height to offset scroll position
-                  const header = document.querySelector('header');
-                  const headerHeight = header ? header.offsetHeight + 20 : 100; // Add 20px buffer
-                  const elementTop = element.offsetTop - headerHeight;
-                  window.scrollTo({
-                    top: elementTop,
-                    behavior: 'smooth',
-                  });
-                  // Set applicants tab as active after scroll
-                  setTimeout(() => {
-                    const applicantsTab = document.querySelector(
-                      '[data-tab="applicants"]'
-                    ) as HTMLButtonElement;
-                    applicantsTab?.click();
-                  }, 500);
-                }
+                scrollToElement('tabbed-features');
+                setTimeout(() => {
+                  const applicantsTab = document.querySelector(
+                    '[data-tab="applicants"]'
+                  ) as HTMLButtonElement;
+                  applicantsTab?.click();
+                }, 500);
               }}
             >
               <span>For Applicants</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
+              <ArrowRight className="h-5 w-5" />
+            </Button>
 
-            <button
-              className="btn-secondary"
+            <Button
+              variant="secondary"
               onClick={() => {
-                const element = document.getElementById('tabbed-features');
-                if (element) {
-                  // Get actual header height to offset scroll position
-                  const header = document.querySelector('header');
-                  const headerHeight = header ? header.offsetHeight + 20 : 100; // Add 20px buffer
-                  const elementTop = element.offsetTop - headerHeight;
-                  window.scrollTo({
-                    top: elementTop,
-                    behavior: 'smooth',
-                  });
-                  // Set companies tab as active after scroll
-                  setTimeout(() => {
-                    const companiesTab = document.querySelector(
-                      '[data-tab="companies"]'
-                    ) as HTMLButtonElement;
-                    companiesTab?.click();
-                  }, 500);
-                }
+                scrollToElement('tabbed-features');
+                setTimeout(() => {
+                  const companiesTab = document.querySelector(
+                    '[data-tab="companies"]'
+                  ) as HTMLButtonElement;
+                  companiesTab?.click();
+                }, 500);
               }}
             >
               <span>For Companies</span>
-            </button>
+            </Button>
           </motion.div>
 
           {/* Stats */}
           <motion.div variants={itemVariants} className="mb-12 sm:mb-16">
             {/* Mobile: Horizontal scroll */}
-            <div className="block sm:hidden overflow-hidden w-full">
+            <div className="block w-full overflow-hidden sm:hidden">
               <div
-                className="flex gap-3 overflow-x-auto pb-4 px-4 scrollbar-hide"
+                className="scrollbar-hide flex gap-3 overflow-x-auto px-4 pb-4"
                 style={{ scrollSnapType: 'x mandatory', width: '100%', maxWidth: '100vw' }}
               >
                 {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
-                    className="flex-shrink-0 text-center bg-white dark:bg-gray-800 rounded-xl p-3 shadow-sm border border-gray-100 dark:border-gray-700 w-32"
+                    className="w-32 flex-shrink-0 rounded-xl border border-gray-100 bg-white p-3 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800"
                     style={{ scrollSnapAlign: 'start' }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.5 + index * 0.1, duration: 0.5 }}
                   >
-                    <stat.icon className="w-6 h-6 text-primary-500 dark:text-primary-400 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                    <stat.icon className="mx-auto mb-2 h-6 w-6 text-primary-500 dark:text-primary-400" />
+                    <div className="mb-1 text-lg font-bold text-gray-900 dark:text-white">
                       {stat.value}
                     </div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 leading-tight">
+                    <div className="text-xs leading-tight text-gray-600 dark:text-gray-400">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -202,19 +185,19 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Desktop: Grid */}
-            <div className="hidden sm:grid sm:grid-cols-3 gap-6 lg:gap-8">
+            <div className="hidden gap-6 sm:grid sm:grid-cols-3 lg:gap-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="text-center group cursor-pointer"
+                  className="group cursor-pointer text-center"
                   whileHover={{ y: -3, scale: 1.02 }}
                   transition={{ delay: stat.delay }}
                 >
-                  <motion.div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-900/50 transition-colors duration-300">
-                    <stat.icon className="w-8 h-8 text-primary-500 dark:text-primary-400" />
+                  <motion.div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 transition-colors duration-300 group-hover:bg-primary-200 dark:bg-primary-900/30 dark:group-hover:bg-primary-900/50">
+                    <stat.icon className="h-8 w-8 text-primary-500 dark:text-primary-400" />
                   </motion.div>
                   <motion.div
-                    className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2"
+                    className="mb-2 text-2xl font-bold text-gray-900 dark:text-white md:text-3xl"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.5 + index * 0.1, duration: 0.5 }}
@@ -230,22 +213,22 @@ const Hero: React.FC = () => {
           {/* Trust Logos */}
           <motion.div
             variants={itemVariants}
-            className="border-t border-gray-200 dark:border-gray-700 pt-6 sm:pt-12"
+            className="border-t border-gray-200 pt-6 dark:border-gray-700 sm:pt-12"
           >
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-4 sm:mb-8">
+            <p className="mb-4 text-xs text-gray-500 dark:text-gray-400 sm:mb-8 sm:text-sm">
               Trusted by leading companies worldwide
             </p>
 
             {/* Mobile: Horizontal scroll */}
-            <div className="block sm:hidden overflow-hidden w-full">
+            <div className="block w-full overflow-hidden sm:hidden">
               <div
-                className="flex gap-2 overflow-x-auto pb-2 px-4 scrollbar-hide"
+                className="scrollbar-hide flex gap-2 overflow-x-auto px-4 pb-2"
                 style={{ scrollSnapType: 'x mandatory', width: '100%', maxWidth: '100vw' }}
               >
                 {trustLogos.map((company, index) => (
                   <motion.div
                     key={company}
-                    className="flex-shrink-0 px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 text-sm font-medium whitespace-nowrap opacity-60"
+                    className="flex-shrink-0 whitespace-nowrap rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-600 opacity-60 dark:bg-gray-800 dark:text-gray-400"
                     style={{ scrollSnapAlign: 'start' }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 0.6, x: 0 }}
@@ -258,11 +241,11 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Desktop: Flex wrap */}
-            <div className="hidden sm:flex flex-wrap justify-center items-center gap-4 lg:gap-6 opacity-60">
+            <div className="hidden flex-wrap items-center justify-center gap-4 opacity-60 sm:flex lg:gap-6">
               {trustLogos.map((company, index) => (
                 <motion.div
                   key={company}
-                  className="px-4 lg:px-6 py-2 sm:py-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 text-sm sm:text-base font-medium cursor-pointer"
+                  className="cursor-pointer rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400 sm:py-3 sm:text-base lg:px-6"
                   whileHover={{ scale: 1.05, opacity: 1, y: -1 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 0.6, y: 0 }}
@@ -274,26 +257,26 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </Container>
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 transform cursor-pointer"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.6 }}
         whileHover={{ scale: 1.1 }}
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
       >
-        <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center relative overflow-hidden">
+        <div className="relative flex h-10 w-6 justify-center overflow-hidden rounded-full border-2 border-gray-400 dark:border-gray-600">
           <motion.div
-            className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2"
+            className="mt-2 h-3 w-1 rounded-full bg-gray-400 dark:bg-gray-600"
             animate={{ y: [0, 16, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 };
 

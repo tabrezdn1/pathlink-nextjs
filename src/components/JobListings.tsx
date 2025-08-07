@@ -3,6 +3,9 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { MapPin, Clock, DollarSign, ArrowRight } from 'lucide-react';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Button from '@/components/ui/Button';
 
 interface Job {
   id: number;
@@ -131,16 +134,16 @@ const JobListings: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-dark-surface overflow-x-hidden">
-      <div className="container-custom w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Section className="bg-gray-50 dark:bg-dark-surface">
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="mb-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -148,7 +151,7 @@ const JobListings: React.FC = () => {
             Discover Your Next Opportunity
           </motion.h2>
           <motion.p
-            className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0"
+            className="mx-auto max-w-2xl px-2 text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:px-0 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -159,64 +162,64 @@ const JobListings: React.FC = () => {
         </motion.div>
 
         {/* Mobile: Horizontal scroll */}
-        <div className="block sm:hidden mb-12 overflow-hidden w-full">
+        <div className="mb-12 block w-full overflow-hidden sm:hidden">
           <div
-            className="flex gap-4 overflow-x-auto pb-4 px-4 scrollbar-hide"
+            className="scrollbar-hide flex gap-4 overflow-x-auto px-4 pb-4"
             style={{ scrollSnapType: 'x mandatory', width: '100%', maxWidth: '100vw' }}
           >
             {jobs.map((job, index) => (
               <motion.div
                 key={job.id}
                 variants={cardVariants}
-                className={`flex-shrink-0 w-72 cursor-pointer ${job.bgGradient} rounded-xl p-4 border ${job.borderColor} hover:shadow-lg transition-all duration-300 relative overflow-hidden`}
+                className={`w-72 flex-shrink-0 cursor-pointer ${job.bgGradient} rounded-xl border p-4 ${job.borderColor} relative overflow-hidden transition-all duration-300 hover:shadow-lg`}
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ y: -2, scale: 1.01 }}
               >
                 {/* Header */}
-                <div className="flex items-start justify-between mb-3 relative z-10">
+                <div className="relative z-10 mb-3 flex items-start justify-between">
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-200">
+                    <h3 className="mb-1 text-lg font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-300">
                       {job.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
                       {job.company}
                     </p>
                   </div>
                 </div>
 
                 {/* Location & Type */}
-                <div className="flex items-center space-x-3 mb-3 text-xs text-gray-600 dark:text-gray-400 relative z-10">
+                <div className="relative z-10 mb-3 flex items-center space-x-3 text-xs text-gray-600 dark:text-gray-400">
                   <div className="flex items-center space-x-1">
-                    <MapPin className="w-3 h-3" />
+                    <MapPin className="h-3 w-3" />
                     <span>{job.location}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
+                    <Clock className="h-3 w-3" />
                     <span>{job.type}</span>
                   </div>
                 </div>
 
                 {/* Salary */}
-                <div className="flex items-center space-x-1 mb-3 text-gray-700 dark:text-gray-300 relative z-10">
-                  <DollarSign className="w-3 h-3" />
+                <div className="relative z-10 mb-3 flex items-center space-x-1 text-gray-700 dark:text-gray-300">
+                  <DollarSign className="h-3 w-3" />
                   <span className="text-sm font-semibold">{job.salary}</span>
                 </div>
 
                 {/* Skills */}
-                <div className="mb-4 relative z-10">
+                <div className="relative z-10 mb-4">
                   <div className="flex flex-wrap gap-1">
                     {job.skills.slice(0, 3).map(skill => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full"
+                        className="rounded-full bg-white/60 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800/60 dark:text-gray-300"
                       >
                         {skill}
                       </span>
                     ))}
                     {job.skills.length > 3 && (
-                      <span className="px-2 py-1 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full">
+                      <span className="rounded-full bg-white/60 px-2 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800/60 dark:text-gray-300">
                         +{job.skills.length - 3}
                       </span>
                     )}
@@ -224,9 +227,9 @@ const JobListings: React.FC = () => {
                 </div>
 
                 {/* Action */}
-                <div className="flex items-center justify-end relative z-10">
+                <div className="relative z-10 flex items-center justify-end">
                   <ArrowRight
-                    className={`w-4 h-4 ${job.accentColor} transform group-hover:translate-x-1 transition-transform duration-200`}
+                    className={`h-4 w-4 ${job.accentColor} transform transition-transform duration-200 group-hover:translate-x-1`}
                   />
                 </div>
               </motion.div>
@@ -236,7 +239,7 @@ const JobListings: React.FC = () => {
 
         {/* Desktop: Grid */}
         <motion.div
-          className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          className="mb-12 hidden gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -246,27 +249,27 @@ const JobListings: React.FC = () => {
               key={job.id}
               variants={cardVariants}
               whileHover="hover"
-              className={`group cursor-pointer ${job.bgGradient} rounded-2xl p-6 border ${job.borderColor} hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
+              className={`group cursor-pointer ${job.bgGradient} rounded-2xl border p-6 ${job.borderColor} relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
             >
               {/* Animated background overlay */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 dark:from-white/10 dark:to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-white/10 dark:to-white/5"
                 initial={false}
               />
 
               {/* Header */}
-              <div className="flex items-start justify-between mb-4 relative z-10">
+              <div className="relative z-10 mb-4 flex items-start justify-between">
                 <div className="flex-1">
                   <motion.h3
-                    className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-200"
+                    className="mb-2 text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-300"
                     layoutId={`job-title-${job.id}`}
                   >
                     {job.title}
                   </motion.h3>
-                  <p className="text-gray-600 dark:text-gray-300 font-medium">{job.company}</p>
+                  <p className="font-medium text-gray-600 dark:text-gray-300">{job.company}</p>
                 </div>
                 <motion.div
-                  className={`w-3 h-3 rounded-full ${job.accentColor.replace('text-', 'bg-')} opacity-0 group-hover:opacity-100`}
+                  className={`h-3 w-3 rounded-full ${job.accentColor.replace('text-', 'bg-')} opacity-0 group-hover:opacity-100`}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
@@ -276,33 +279,33 @@ const JobListings: React.FC = () => {
               </div>
 
               {/* Location & Type */}
-              <div className="flex items-center space-x-4 mb-4 text-sm text-gray-600 dark:text-gray-400 relative z-10">
+              <div className="relative z-10 mb-4 flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
                 <motion.div className="flex items-center space-x-1" whileHover={{ scale: 1.05 }}>
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="h-4 w-4" />
                   <span>{job.location}</span>
                 </motion.div>
                 <motion.div className="flex items-center space-x-1" whileHover={{ scale: 1.05 }}>
-                  <Clock className="w-4 h-4" />
+                  <Clock className="h-4 w-4" />
                   <span>{job.type}</span>
                 </motion.div>
               </div>
 
               {/* Salary */}
               <motion.div
-                className="flex items-center space-x-1 mb-4 text-gray-700 dark:text-gray-300 relative z-10"
+                className="relative z-10 mb-4 flex items-center space-x-1 text-gray-700 dark:text-gray-300"
                 whileHover={{ scale: 1.05 }}
               >
-                <DollarSign className="w-4 h-4" />
+                <DollarSign className="h-4 w-4" />
                 <span className="font-semibold">{job.salary}</span>
               </motion.div>
 
               {/* Skills */}
-              <div className="mb-6 relative z-10">
+              <div className="relative z-10 mb-6">
                 <div className="flex flex-wrap gap-2">
                   {job.skills.map((skill, skillIndex) => (
                     <motion.span
                       key={skill}
-                      className="px-3 py-1 bg-white/60 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors duration-200 cursor-pointer"
+                      className="cursor-pointer rounded-full bg-white/60 px-3 py-1 text-xs font-medium text-gray-700 transition-colors duration-200 hover:bg-white/80 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800/80"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
@@ -316,7 +319,7 @@ const JobListings: React.FC = () => {
 
               {/* Action */}
               <motion.div
-                className="flex items-center justify-between relative z-10"
+                className="relative z-10 flex items-center justify-between"
                 variants={hoverVariants}
               >
                 <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -324,7 +327,7 @@ const JobListings: React.FC = () => {
                 </span>
                 <motion.div whileHover={{ scale: 1.05, rotate: 15 }} transition={{ duration: 0.2 }}>
                   <ArrowRight
-                    className={`w-5 h-5 ${job.accentColor} transform group-hover:translate-x-1 transition-transform duration-200`}
+                    className={`h-5 w-5 ${job.accentColor} transform transition-transform duration-200 group-hover:translate-x-1`}
                   />
                 </motion.div>
               </motion.div>
@@ -339,21 +342,13 @@ const JobListings: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.5 }}
         >
-          <motion.button
-            className="btn-primary flex items-center space-x-2 mx-auto relative overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              initial={false}
-            />
+          <Button className="group relative mx-auto flex items-center space-x-2 overflow-hidden">
             <span className="relative z-10">View All Opportunities</span>
-            <ArrowRight className="w-5 h-5 relative z-10" />
-          </motion.button>
+            <ArrowRight className="relative z-10 h-5 w-5" />
+          </Button>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Users, Shield, CheckCircle, ArrowRight } from 'lucide-react';
+import Section from '@/components/ui/Section';
+import Container from '@/components/ui/Container';
+import Button from '@/components/ui/Button';
 
 const TabbedFeatures: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'applicants' | 'companies'>('applicants');
@@ -106,11 +109,11 @@ const TabbedFeatures: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-white dark:bg-black pt-16 sm:pt-24 overflow-x-hidden">
-      <div className="container-custom w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Section className="bg-white pt-16 dark:bg-black sm:pt-24">
+      <Container>
         {/* Why PathLink Exists Section */}
         <motion.div
-          className="text-center mb-24"
+          className="mb-24 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
@@ -118,18 +121,18 @@ const TabbedFeatures: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-5xl text-display text-gray-900 dark:text-white mb-12"
+            className="text-display mb-12 text-3xl text-gray-900 dark:text-white md:text-5xl"
           >
             {whyPathLink.title}
           </motion.h2>
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="mx-auto max-w-4xl space-y-6">
             {whyPathLink.content.map((paragraph, index) => (
               <motion.p
                 key={index}
                 variants={itemVariants}
-                className={`text-lg md:text-xl text-body-large ${
+                className={`text-body-large text-lg md:text-xl ${
                   index === 0 || index === 2
-                    ? 'text-gray-900 dark:text-white font-semibold'
+                    ? 'font-semibold text-gray-900 dark:text-white'
                     : 'text-gray-600 dark:text-gray-300'
                 }`}
               >
@@ -142,33 +145,33 @@ const TabbedFeatures: React.FC = () => {
         {/* Tabbed Content Section */}
         <motion.div
           id="tabbed-features"
-          className="max-w-6xl mx-auto"
+          className="mx-auto max-w-6xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={containerVariants}
         >
           {/* Tab Navigation */}
-          <motion.div variants={itemVariants} className="flex justify-center mb-12">
-            <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded-2xl flex space-x-2">
+          <motion.div variants={itemVariants} className="mb-12 flex justify-center">
+            <div className="flex space-x-2 rounded-2xl bg-gray-100 p-2 dark:bg-gray-800">
               <button
                 data-tab="applicants"
                 onClick={() => setActiveTab('applicants')}
-                className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`relative rounded-xl px-8 py-4 font-semibold transition-all duration-300 ${
                   activeTab === 'applicants'
                     ? 'text-white dark:text-gray-900'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
                 }`}
               >
                 {activeTab === 'applicants' && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 gradient-bg rounded-xl"
+                    className="gradient-bg absolute inset-0 rounded-xl"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center space-x-2">
-                  <Users className="w-5 h-5" />
+                  <Users className="h-5 w-5" />
                   <span>For Applicants</span>
                 </span>
               </button>
@@ -176,21 +179,21 @@ const TabbedFeatures: React.FC = () => {
               <button
                 data-tab="companies"
                 onClick={() => setActiveTab('companies')}
-                className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`relative rounded-xl px-8 py-4 font-semibold transition-all duration-300 ${
                   activeTab === 'companies'
                     ? 'text-white dark:text-gray-900'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
                 }`}
               >
                 {activeTab === 'companies' && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 gradient-bg rounded-xl"
+                    className="gradient-bg absolute inset-0 rounded-xl"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center space-x-2">
-                  <Shield className="w-5 h-5" />
+                  <Shield className="h-5 w-5" />
                   <span>For Companies</span>
                 </span>
               </button>
@@ -206,13 +209,13 @@ const TabbedFeatures: React.FC = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-gray-50 dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12"
+                className="rounded-2xl bg-gray-50 p-4 dark:bg-gray-800 sm:rounded-3xl sm:p-6 md:p-8 lg:p-12"
               >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl text-heading text-gray-900 dark:text-white mb-4">
+                <div className="mb-12 text-center">
+                  <h2 className="text-heading mb-4 text-3xl text-gray-900 dark:text-white md:text-4xl">
                     For Applicants
                   </h2>
-                  <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+                  <p className="mb-2 text-xl text-gray-600 dark:text-gray-300">
                     You shouldn&apos;t have to apply to 100 jobs to find one that fits.
                   </p>
                   <p className="text-lg text-gray-500 dark:text-gray-400">
@@ -221,23 +224,23 @@ const TabbedFeatures: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid gap-6 md:grid-cols-2">
                   {applicantFeatures.map((feature, index) => (
                     <motion.div
                       key={index}
-                      className="bg-white dark:bg-gray-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-200"
+                      className="rounded-2xl bg-white p-6 transition-all duration-200 hover:shadow-lg dark:bg-gray-700"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.05, duration: 0.4 }}
                     >
                       <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400 mt-1 flex-shrink-0" />
+                        <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                             {feature.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                             {feature.description}
                           </p>
                         </div>
@@ -246,14 +249,14 @@ const TabbedFeatures: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="text-center mt-8">
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
+                <div className="mt-8 text-center">
+                  <p className="mb-6 italic text-gray-600 dark:text-gray-300">
                     No more job boards. No more guessing. No more applying into black holes.
                   </p>
-                  <button className="btn-accent flex items-center space-x-2 mx-auto">
+                  <Button variant="accent" className="mx-auto flex items-center space-x-2">
                     <span>Join the Waitlist</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
                 </div>
               </motion.div>
             )}
@@ -265,13 +268,13 @@ const TabbedFeatures: React.FC = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-gray-50 dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12"
+                className="rounded-2xl bg-gray-50 p-4 dark:bg-gray-800 sm:rounded-3xl sm:p-6 md:p-8 lg:p-12"
               >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl text-heading text-gray-900 dark:text-white mb-4">
+                <div className="mb-12 text-center">
+                  <h2 className="text-heading mb-4 text-3xl text-gray-900 dark:text-white md:text-4xl">
                     For Companies
                   </h2>
-                  <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+                  <p className="mb-2 text-xl text-gray-600 dark:text-gray-300">
                     Only see the candidates who match — and none of the ones who don&apos;t.
                   </p>
                   <p className="text-lg text-gray-500 dark:text-gray-400">
@@ -279,23 +282,23 @@ const TabbedFeatures: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid gap-6 md:grid-cols-2">
                   {companyFeatures.map((feature, index) => (
                     <motion.div
                       key={index}
-                      className="bg-white dark:bg-gray-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-200"
+                      className="rounded-2xl bg-white p-6 transition-all duration-200 hover:shadow-lg dark:bg-gray-700"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.05, duration: 0.4 }}
                     >
                       <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 dark:text-green-400 mt-1 flex-shrink-0" />
+                        <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400" />
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                             {feature.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          <p className="leading-relaxed text-gray-600 dark:text-gray-300">
                             {feature.description}
                           </p>
                         </div>
@@ -304,21 +307,21 @@ const TabbedFeatures: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="text-center mt-8">
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
+                <div className="mt-8 text-center">
+                  <p className="mb-6 italic text-gray-600 dark:text-gray-300">
                     Less recruiting friction. More signal. Built for how hiring should work.
                   </p>
-                  <button className="btn-accent flex items-center space-x-2 mx-auto">
+                  <Button variant="accent" className="mx-auto flex items-center space-x-2">
                     <span>Request Early Access</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
         </motion.div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

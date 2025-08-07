@@ -16,10 +16,10 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: 'Pathlink - Your Career Path Starts Here',
+  title: 'PathLink - Your Career Path Starts Here',
   description: 'Connecting talent with opportunities globally',
   keywords: ['jobs', 'careers', 'recruitment', 'AI', 'professional'],
-  authors: [{ name: 'Pathlink Team' }],
+  authors: [{ name: 'PathLink Team' }],
 };
 
 export const viewport = {
@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${lexend.variable} antialiased`}>
         <ThemeProvider>
-          <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 overflow-x-hidden w-full max-w-full">
+          <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-gray-900 transition-colors duration-300 dark:bg-black dark:text-white">
             {children}
           </div>
         </ThemeProvider>
