@@ -1,26 +1,417 @@
-@import "tailwindcss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Professional Typography System */
+@layer base {
+  body {
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-variation-settings: normal;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Lexend', 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'ss02';
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Optimized font weights for trust */
+  .font-display {
+    font-family: 'Lexend', 'Inter', system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Prevent horizontal overflow globally */
+  .container-custom {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Fix viewport overflow issues */
+  #__next {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
+@layer components {
+  /* Professional Typography Classes */
+  .text-display {
+    font-family: 'Lexend', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .text-heading {
+    font-family: 'Lexend', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+
+  .text-subheading {
+    font-family: 'Lexend', 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+
+  .text-body-large {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+  }
+
+  .text-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .text-caption {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary {
+    @apply bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] font-body;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.005em;
+  }
+
+  .btn-primary:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.3),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .btn-primary {
+    @apply bg-white hover:bg-gray-50 text-gray-900 border-gray-200 hover:border-gray-300;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .btn-primary:hover {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .btn-secondary {
+    @apply bg-transparent font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-[1.02] font-body text-gray-900 dark:text-white;
+    border: 2px solid #05324f;
+    letter-spacing: 0.005em;
+  }
+
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #05324f 0%, #05324f 75%, #c0ac78 95%, #c0ac78 100%);
+    color: white;
+    border-color: #c0ac78;
+    box-shadow:
+      0 4px 6px -1px rgba(5, 50, 79, 0.2),
+      0 2px 4px -1px rgba(5, 50, 79, 0.1);
+  }
+
+  .dark .btn-secondary {
+    border-color: #fdf7d7;
+  }
+
+  .dark .btn-secondary:hover {
+    background: linear-gradient(135deg, #fdf7d7 0%, #fdf7d7 75%, #c0ac78 95%, #c0ac78 100%);
+    color: #111827;
+    border-color: #c0ac78;
+    box-shadow:
+      0 4px 6px -1px rgba(253, 247, 215, 0.2),
+      0 2px 4px -1px rgba(253, 247, 215, 0.1);
+  }
+
+  .btn-accent {
+    @apply font-semibold py-3 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] font-body text-white dark:text-gray-900;
+    background: linear-gradient(135deg, #05324f 0%, #05324f 75%, #c0ac78 95%, #c0ac78 100%);
+    border: none;
+    letter-spacing: 0.005em;
+  }
+
+  .btn-accent:hover {
+    box-shadow:
+      0 20px 25px -5px rgba(5, 50, 79, 0.4),
+      0 10px 10px -5px rgba(5, 50, 79, 0.1);
+  }
+
+  .dark .btn-accent {
+    background: linear-gradient(135deg, #fdf7d7 0%, #fdf7d7 75%, #c0ac78 95%, #c0ac78 100%);
+    border: none;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .btn-accent:hover {
+    box-shadow:
+      0 20px 25px -5px rgba(253, 247, 215, 0.4),
+      0 10px 10px -5px rgba(253, 247, 215, 0.1);
+  }
+
+  .btn-glass {
+    @apply glass-effect text-gray-900 dark:text-white font-medium py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition-all duration-300;
+  }
+
+  .card-hover {
+    position: relative;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    overflow: hidden;
+  }
+
+  .card-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(135deg, #05324f 0%, #05324f 70%, #c0ac78 90%, #fdf7d7 100%);
+    transition: left 0.5s ease;
+  }
+
+  .card-hover:hover::before {
+    left: 0;
+  }
+
+  .dark .card-hover::before {
+    background: linear-gradient(135deg, #fdf7d7 0%, #fdf7d7 70%, #c0ac78 90%, #05324f 100%);
+  }
+
+  /* Light Theme Gradients - Navy 70%, Gold 20%, Cream 10% */
+  .gradient-text {
+    background: linear-gradient(135deg, #05324f 0%, #05324f 70%, #c0ac78 90%, #fdf7d7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #05324f 0%, #05324f 70%, #c0ac78 90%, #fdf7d7 100%);
+  }
+
+  .gradient-bg-subtle {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 50, 79, 0.05) 0%,
+      rgba(5, 50, 79, 0.03) 70%,
+      rgba(192, 172, 120, 0.02) 90%,
+      rgba(253, 247, 215, 0.01) 100%
+    );
+  }
+
+  /* Dark Theme Gradients - Cream 70%, Gold 20%, Navy 10% */
+  .dark .gradient-text {
+    background: linear-gradient(135deg, #fdf7d7 0%, #fdf7d7 70%, #c0ac78 90%, #05324f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .dark .gradient-bg {
+    background: linear-gradient(135deg, #fdf7d7 0%, #fdf7d7 70%, #c0ac78 90%, #05324f 100%);
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .dark .gradient-bg-subtle {
+    background: linear-gradient(
+      135deg,
+      rgba(253, 247, 215, 0.05) 0%,
+      rgba(253, 247, 215, 0.03) 70%,
+      rgba(192, 172, 120, 0.02) 90%,
+      rgba(5, 50, 79, 0.01) 100%
+    );
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #05324f, #c0ac78, #fdf7d7);
+    padding: 2px;
+    border-radius: 1rem;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: white;
+    border-radius: 0.875rem;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-custom {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  /* Text truncation utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .section-padding {
+      @apply py-12;
+    }
+
+    .container-custom {
+      @apply px-4;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* Ensure no element exceeds viewport width */
+    section {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* Fix for any grid or flex items that might overflow */
+    .grid,
+    .flex {
+      max-width: 100%;
+    }
+  }
+
+  /* Desktop-specific overflow fixes */
+  @media (min-width: 641px) {
+    /* Ensure all sections don't overflow on desktop */
+    section {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Prevent horizontal scrollbar on desktop */
+    .container-custom {
+      max-width: 1280px; /* 80rem */
+      overflow-x: visible; /* Allow normal overflow for desktop */
+    }
+
+    /* Hide horizontal scroll containers on desktop */
+    .scrollbar-hide {
+      overflow-x: visible !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
